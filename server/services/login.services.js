@@ -15,4 +15,3 @@ export async function loginService(agentCode, password) {
   }
   return await loginDal(agentCode, password);
 }
-

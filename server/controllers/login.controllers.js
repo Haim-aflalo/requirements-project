@@ -1,16 +1,19 @@
 import { loginService } from "../services/login.services.js";
+import jwt from "jsonwebtoken";
+import "dotenv/config";
 
 export async function loginController(req, res) {
   try {
     const { agentCode, password } = req.body;
     const agent = await loginService(agentCode, password);
-
     if (!agent) return res.status(401).send("unauthorized");
-
-    const token = jwt.sign({ id: agent.id, role: agent.role }, "secret", {
-      expiresIn: "1h",
-    });
-
+    const token = jwt.sign(
+      { agentCode: agent.agentCode, password: agent.passwordHash },
+      process.env.JWT_SECRET,
+      {
+        expiresIn: "1h",
+      },
+    );
     res.status(200).json({
       token,
       user: {
