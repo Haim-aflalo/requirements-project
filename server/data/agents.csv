@@ -1,0 +1,3 @@
+id,agentCode,fullName,passwordHash,role,createdAt
+A1,AGT001,David Cohen,WzerwXlsvm,admin,2026-01-12T09:15:22
+A2,AGT002,Sarah Levi,HzizsOvub,agent,2026-01-13T10:42:11
