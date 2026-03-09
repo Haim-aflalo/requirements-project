@@ -1,4 +1,4 @@
-import { postReportDal } from "../dal/reports.dal.js";
+import { getReportsDal, postReportDal } from "../dal/reports.dal.js";
 
 export async function postReportService(data) {
   const { message, category, urgency } = data;
@@ -9,4 +9,11 @@ export async function postReportService(data) {
     throw error;
   }
   return await postReportDal(data);
+}
+
+export async function getReportsService(params, auth) {
+  if (!params.key.includes(["category", "urgency", "message"])) {
+    throw new Error("invalid filter");
+  }
+  return await getReportsDal(params, auth);
 }
