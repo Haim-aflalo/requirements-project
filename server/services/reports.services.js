@@ -2,7 +2,6 @@ import { getReportsDal, postReportDal } from "../dal/reports.dal.js";
 
 export async function postReportService(data) {
   const { category, message, urgency } = data;
-
   if (!message || !category || !urgency) {
     const error = new Error("missing required fields");
     error.status = 400;
@@ -11,10 +10,10 @@ export async function postReportService(data) {
   return await postReportDal(data);
 }
 
-export async function getReportService(params, role, id) {
+export async function getReportService(params, role, agentCode) {
   let reports = await getReportsDal();
   if (role === "agent") {
-    reports = reports.filter((report) => report.userId === id);
+    reports = reports.filter((report) => report.userId === agentCode);
   }
   if (params.category) {
     reports = reports.filter((report) => report.category === params.category);
@@ -30,7 +29,7 @@ export async function getReportService(params, role, id) {
 
 export async function getReportByIdService(reportId, role, userId) {
   let reports = await getReportsDal();
-  const report = reports.find((report) => report.id === reportId);
+  const report = reports.find((report) => report.id == reportId);
   if (!report) {
     const error = new Error("Report Not Found");
     error.status = 404;

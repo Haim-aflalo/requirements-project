@@ -12,10 +12,10 @@ export async function postReportsController(req, res) {
     const { category, urgency, message } = req.body;
     const report = {
       id: currentId++,
-      userId: decoded.id,
+      userId: decoded.agentCode,
       category,
-      urgency,
       message,
+      urgency,
       sourceType: "manual",
     };
     if (req.file) {
@@ -40,13 +40,13 @@ export async function reportsCsvControllers(req, res) {
       .filter((r) => r.trim() !== "");
     const reports = [];
     for (const row of rows) {
-      const [category, urgency, message] = row.split(",");
+      const [category, message, urgency] = row.split(",");
       const report = {
         id: currentId++,
-        userId: decoded.id,
+        userId: decoded.agentCode,
         category,
-        urgency,
         message,
+        urgency,
         sourceType: "csv",
         createdAt: new Date().toISOString(),
       };
@@ -68,8 +68,8 @@ export async function getReportsController(req, res) {
     const params = req.query;
     const decoded = req.user;
     const role = decoded.role;
-    const id = decoded.id;
-    const reports = await getReportService(params, role, id);
+    const agentCode = decoded.agentCode;
+    const reports = await getReportService(params, role, agentCode);
     res.status(200).json({ reports });
   } catch (error) {
     res.status(400).json({ error: error.message });
@@ -81,7 +81,7 @@ export async function getReportByIdController(req, res) {
     const reportId = req.params.id;
     const decoded = req.user;
     const role = decoded.role;
-    const userId = decoded.id;
+    const userId = decoded.agentCode;
     const reports = await getReportByIdService(reportId, role, userId);
     res.status(200).json({ reports });
   } catch (error) {

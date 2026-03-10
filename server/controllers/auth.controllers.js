@@ -9,7 +9,7 @@ export async function loginController(req, res) {
     const agent = await loginService(agentCode, password);
     if (!agent) return res.status(401).send("unauthorized");
     const token = jwt.sign(
-      { id: agent.id, role: agent.role },
+      { agentCode: agent.agentCode, role: agent.role },
       process.env.JWT_SECRET,
       {
         expiresIn: "1h",
@@ -36,7 +36,7 @@ export async function meControllers(req, res) {
       await fs.promises.readFile("./data/agents.json", "utf-8"),
     );
     const agent = agents.find(
-      (agent) => agent.id === decoded.id && agent.role === decoded.role,
+      (agent) => agent.agentCode === decoded.agentCode && agent.role === decoded.role,
     );
     if (!agent) return res.status(404).send("User not found");
     res.status(200).json({

@@ -1,0 +1,16 @@
+category,message,urgency
+network,Internet connection drops every few minutes,high
+software,Application crashes when opening a file,medium
+hardware,Laptop battery drains very quickly,medium
+account,Unable to reset my password,high
+network,WiFi signal very weak in the office,low
+software,Error when saving a document,medium
+hardware,Keyboard keys not responding,high
+account,Account locked after multiple login attempts,high
+network,VPN connection fails to establish,medium
+software,Update installation stuck at 50 percent,low
+hardware,External monitor not detected,medium
+account,Two factor authentication not working,high
+network,Slow internet speed during video calls,medium
+software,Application freezes when exporting data,high
+hardware,Mouse cursor moving randomly,low

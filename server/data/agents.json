@@ -6,13 +6,5 @@
     "passwordHash": "WzerwXlsvm",
     "role": "admin",
     "createdAt": "2026-01-12T09:15:22"
-  },
-  {
-    "id": "A2",
-    "agentCode": "AGT002",
-    "fullName": "Sarah Levi",
-    "passwordHash": "HzizsOvub",
-    "role": "agent",
-    "createdAt": "2026-01-13T10:42:11"
   }
 ]
