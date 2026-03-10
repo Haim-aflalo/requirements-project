@@ -1,4 +1,8 @@
-import { postReportService } from "../services/reports.services.js";
+import {
+  postReportService,
+  getReportService,
+  getReportByIdService,
+} from "../services/reports.services.js";
 import fs from "fs";
 
 let currentId = 1;
@@ -56,5 +60,31 @@ export async function reportsCsvControllers(req, res) {
     });
   } catch (error) {
     res.status(400).json({ error: error.message });
+  }
+}
+
+export async function getReportsController(req, res) {
+  try {
+    const params = req.query;
+    const decoded = req.user;
+    const role = decoded.role;
+    const id = decoded.id;
+    const reports = await getReportService(params, role, id);
+    res.status(200).json({ reports });
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+}
+
+export async function getReportByIdController(req, res) {
+  try {
+    const reportId = req.params.id;
+    const decoded = req.user;
+    const role = decoded.role;
+    const userId = decoded.id;
+    const reports = await getReportByIdService(reportId, role, userId);
+    res.status(200).json({ reports });
+  } catch (error) {
+    res.json({ error: error.message });
   }
 }

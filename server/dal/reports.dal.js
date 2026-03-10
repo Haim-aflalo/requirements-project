@@ -12,14 +12,6 @@ export async function postReportDal(data) {
   return data;
 }
 
-export async function getReportsDal(params, auth) {
-  const reports = JSON.parse(
-    await fs.promises.readFile("./data/reports.json", "utf-8"),
-  );
-  if (auth) {
-    return reports.filter((report) => {
-      report.params.key === params.value;
-    });
-  }
-  return reports;
+export async function getReportsDal() {
+  return JSON.parse(await fs.promises.readFile("./data/reports.json", "utf-8"));
 }

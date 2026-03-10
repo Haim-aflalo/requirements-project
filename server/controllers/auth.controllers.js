@@ -25,7 +25,7 @@ export async function loginController(req, res) {
       },
     });
   } catch (error) {
-    res.status(400).send(error);
+    res.status(400).json({ error: error.message });
   }
 }
 
@@ -48,6 +48,6 @@ export async function meControllers(req, res) {
       },
     });
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).json({ error: error.message });
   }
 }

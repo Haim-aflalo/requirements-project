@@ -11,6 +11,10 @@ app.use(express.json());
 
 app.use("/auth", authRouter);
 app.use("/reports", reportsRouter);
+app.get("/hello", (req, res) => {
+  const h = req.query;
+  console.log(h);
+});
 
 app.listen(port, () => {
   console.log("server run on port", port);
