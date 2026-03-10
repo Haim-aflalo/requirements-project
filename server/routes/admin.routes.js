@@ -3,14 +3,15 @@ import {
   createUserController,
   getAllAgentsController,
 } from "../controllers/admin.controllers.js";
-import { checkAuth } from "../middlewares/checkAuth.js";
+import { checkToken } from "../middlewares/checkToken.js";
+import { isAdmin } from "../middlewares/isAdmin.js";
 
 export const adminRouter = express.Router();
 
-adminRouter.post("/users", checkAuth(["admin"]), async (req, res) => {
+adminRouter.post("/users", checkToken, isAdmin, async (req, res) => {
   createUserController(req, res);
 });
 
-adminRouter.get("/users", checkAuth(["admin"]), async (req, res) => {
+adminRouter.get("/users", checkToken, isAdmin, async (req, res) => {
   getAllAgentsController;
 });
