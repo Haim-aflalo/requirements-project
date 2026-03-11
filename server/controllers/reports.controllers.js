@@ -5,17 +5,16 @@ import {
 } from "../services/reports.services.js";
 import fs from "fs";
 
-let currentId = 1;
 export async function postReportsController(req, res) {
   try {
     const decoded = req.user;
     const { category, urgency, message } = req.body;
     const report = {
-      id: currentId++,
+      id: Math.random().toString(36).substring(2, 9),
       userId: decoded.agentCode,
       category,
-      message,
       urgency,
+      message,
       sourceType: "manual",
     };
     if (req.file) {
@@ -40,13 +39,13 @@ export async function reportsCsvControllers(req, res) {
       .filter((r) => r.trim() !== "");
     const reports = [];
     for (const row of rows) {
-      const [category, message, urgency] = row.split(",");
+      const [category, urgency, message] = row.split(",");
       const report = {
-        id: currentId++,
+        id: Math.random().toString(36).substring(2, 9),
         userId: decoded.agentCode,
         category,
-        message,
         urgency,
+        message,
         sourceType: "csv",
         createdAt: new Date().toISOString(),
       };

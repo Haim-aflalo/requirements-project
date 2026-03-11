@@ -7,6 +7,12 @@ export async function postReportService(data) {
     error.status = 400;
     throw error;
   }
+  if (!["intelligence", "logistics", "alert"].includes(category)) {
+    throw new Error("Invalid category");
+  }
+  if (!["low", "medium", "high"].includes(urgency)) {
+    throw new Error("Invalid level of urgency");
+  }
   return await postReportDal(data);
 }
 
@@ -14,12 +20,13 @@ export async function getReportService(params, role, agentCode) {
   let reports = await getReportsDal();
   if (role === "agent") {
     reports = reports.filter((report) => report.userId === agentCode);
+  } else if (role === "admin") {
+    if (params.agentCode) {
+      reports = reports.filter((report) => report.userId === params.agentCode);
+    }
   }
   if (params.category) {
     reports = reports.filter((report) => report.category === params.category);
-  }
-  if (params.message) {
-    reports = reports.filter((report) => report.message === params.message);
   }
   if (params.urgency) {
     reports = reports.filter((report) => report.urgency === params.urgency);

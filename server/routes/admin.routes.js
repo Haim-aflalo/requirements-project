@@ -8,10 +8,6 @@ import { isAdmin } from "../middlewares/isAdmin.js";
 
 export const adminRouter = express.Router();
 
-adminRouter.post("/users", checkToken, isAdmin, async (req, res) => {
-  createUserController(req, res);
-});
+adminRouter.post("/users", checkToken, isAdmin, createUserController);
 
-adminRouter.get("/users", checkToken, isAdmin, async (req, res) => {
-  getAllAgentsController;
-});
+adminRouter.get("/users", checkToken, isAdmin, getAllAgentsController);

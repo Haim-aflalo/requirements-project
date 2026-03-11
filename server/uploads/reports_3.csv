@@ -1,0 +1,6 @@
+category,urgency,message
+intelligence,high,Internet connection drops every few minutes - file 3
+alert,medium,Application crashes when opening a file - file 3
+alert,medium,Laptop battery drains very quickly - file 3
+intelligence,high,Unable to reset my password - file 3
+logistics,low,WiFi signal very weak in the office - file 3

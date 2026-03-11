@@ -10,22 +10,20 @@ import {
 
 export const reportsRouter = express.Router();
 
-reportsRouter.post("/", checkToken, uploadImage("image"), async (req, res) => {
-  await postReportsController(req, res);
-});
+reportsRouter.post(
+  "/",
+  checkToken,
+  uploadImage("image"),
+  postReportsController,
+);
 
 reportsRouter.post(
   "/csv",
   checkToken,
   uploadImage("file"),
-  async (req, res) => {
-    await reportsCsvControllers(req, res);
-  },
+  reportsCsvControllers,
 );
 
-reportsRouter.get("/", checkToken, async (req, res) => {
-  await getReportsController(req, res);
-});
-reportsRouter.get("/:id", checkToken, async (req, res) => {
-  await getReportByIdController(req, res);
-});
+reportsRouter.get("/", checkToken, getReportsController);
+
+reportsRouter.get("/:id", checkToken, getReportByIdController);

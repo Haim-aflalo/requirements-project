@@ -6,5 +6,13 @@
     "passwordHash": "WzerwXlsvm",
     "role": "admin",
     "createdAt": "2026-01-12T09:15:22"
+  },
+  {
+    "id": "A2",
+    "agentCode": "AGT002",
+    "fullName": "David Levy",
+    "passwordHash": "WzerwXlsvm",
+    "role": "agent",
+    "createdAt": "2026-01-12T09:15:22"
   }
 ]

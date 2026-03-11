@@ -7,10 +7,6 @@ import express from "express";
 
 export const authRouter = express.Router();
 
-authRouter.post("/login", async (req, res) => {
-  await loginController(req, res);
-});
+authRouter.post("/login", loginController);
 
-authRouter.get("/me", checkToken, async (req, res) => {
-  await meControllers(req, res);
-});
+authRouter.get("/me", checkToken, meControllers);
