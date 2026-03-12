@@ -2,19 +2,19 @@ import { createUserDal } from "../dal/admin.dal.js";
 import fs from "fs";
 
 export async function createUserService(data) {
-  const { agentCode, fullName, role, password } = data;
+  const { agentCode, fullName, role, passwordHash } = data;
   if (!agentCode || !fullName || !role) {
     const error = new Error("some field are missing");
     error.status = 400;
     throw error;
   }
-  if (role !== "agent" || role !== "agent") {
+  if (role !== "agent" && role !== "admin") {
     throw new Error("invalid role");
   }
-  if (!password) {
-    data.password = fullName.split(" ").resvers().join("");
+  if (!passwordHash || passwordHash === "") {
+    data.passwordHash = fullName.split(" ").reverse().join("");
   }
-  const reports = JSON.parse(await fs.promises.readFile("../data/agents.json"));
+  const reports = JSON.parse(await fs.promises.readFile("./data/agents.json"));
   const isAgent = reports.find((report) => report.agentCode === data.agentCode);
   if (isAgent) {
     const error = new Error("Agent with this agentCode already exist");

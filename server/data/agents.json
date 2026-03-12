@@ -8,11 +8,19 @@
     "createdAt": "2026-01-12T09:15:22"
   },
   {
-    "id": "A2",
+    "id": "2026-03-12T10:48:40.455Z",
     "agentCode": "AGT002",
-    "fullName": "David Levy",
-    "passwordHash": "WzerwXlsvm",
+    "fullName": "Haim Aflalo",
+    "role": "admin",
+    "passwordHash": "HelloWorld666!",
+    "createdAt": "3/12/2026, 12:48:40 PM"
+  },
+  {
+    "id": "2026-03-12T10:55:00.741Z",
+    "agentCode": "AGT003",
+    "fullName": "Eli DE",
     "role": "agent",
-    "createdAt": "2026-01-12T09:15:22"
+    "passwordHash": "DEEli",
+    "createdAt": "3/12/2026, 12:55:00 PM"
   }
 ]

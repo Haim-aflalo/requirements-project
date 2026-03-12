@@ -4,7 +4,6 @@ import { authRouter } from "./routes/auth.routes.js";
 import { reportsRouter } from "./routes/reports.routes.js";
 import { adminRouter } from "./routes/admin.routes.js";
 
-
 const app = express();
 const port = 3000;
 

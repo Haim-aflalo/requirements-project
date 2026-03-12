@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthState } from "../state/AuthState";
 import { jwtDecode } from "jwt-decode";
-
+import "../styles/Login.css";
 interface TokenPayload {
   role: string;
   agentCode: string;
@@ -37,23 +37,26 @@ export function Login() {
   }
 
   return (
-    <div>
+    <div className="login-form">
       <h2>Login</h2>
       <form onSubmit={login}>
-        <input
-          type="text"
-          placeholder="Agent Code"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setAgentCode(e.target.value)
-          }
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setPassword(e.target.value)
-          }
-        />
+        <div className="input">
+          <input
+            className="id"
+            type="text"
+            placeholder="Agent Code"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setAgentCode(e.target.value)
+            }
+          />
+          <input
+            type="password"
+            placeholder="Password"
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+              setPassword(e.target.value)
+            }
+          />
+        </div>
         <button type="submit">Login</button>
       </form>
     </div>

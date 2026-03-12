@@ -8,7 +8,6 @@ interface AuthState {
 
 export const useAuthState = create<AuthState>((set) => ({
   role: "",
-  agentCode: "",
   setRole: (role) => set({ role }),
   logout: () => set({ role: "" }),
 }));

@@ -81,8 +81,8 @@ export async function getReportByIdController(req, res) {
     const decoded = req.user;
     const role = decoded.role;
     const userId = decoded.agentCode;
-    const reports = await getReportByIdService(reportId, role, userId);
-    res.status(200).json({ reports });
+    const report = await getReportByIdService(reportId, role, userId);
+    res.status(200).json({ report });
   } catch (error) {
     res.json({ error: error.message });
   }

@@ -17,9 +17,10 @@ function MyReports() {
   const [category, setCategory] = useState<string>("");
   const [urgency, setUrgency] = useState<string>("");
   const [agentCode, setAgentCode] = useState<string>("");
-  const [reports, setReports] = useState<Report[]>();
-  const { role } = useAuthState();
-  async function fetchReports() {
+  const [reports, setReports] = useState<Report[]>([]);
+  const role = useAuthState((state) => state.role);
+
+  async function fetchReportsWithFilter() {
     try {
       const params: any = {};
       if (category) {
@@ -35,13 +36,14 @@ function MyReports() {
         params,
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
+      console.log(role);
       setReports(response.data.reports);
     } catch (error) {
       console.error("Fetch Failed", error);
     }
   }
   useEffect(() => {
-    fetchReports();
+    fetchReportsWithFilter();
   }, [category, urgency, agentCode]);
 
   return (
@@ -67,7 +69,7 @@ function MyReports() {
         />
       )}
       <ul>
-        {reports?.map((report) => (
+        {reports.map((report) => (
           <li key={report.id}>
             <div>
               <strong>User Id:</strong>
