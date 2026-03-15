@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
+import Back from "./Back";
+import "../styles/HandReport.css";
 
 function HandReport() {
   const [category, setCategory] = useState<string>("");
   const [urgency, setUrgency] = useState<string>("");
   const [message, setMessage] = useState<string>("");
   const [file, setFile] = useState<File>();
+  const [sent, setSent] = useState<boolean>(false);
   async function addHandReport(e: React.FormEvent): Promise<void> {
     e.preventDefault();
 
@@ -21,14 +24,15 @@ function HandReport() {
           "Content-Type": "multipart/form-data",
         },
       });
+      setSent(true);
     } catch (error) {
       console.error("Post Failed:", error);
     }
   }
   return (
-    <div>
-      <h2>Add Hand Report</h2>
-      <form onSubmit={addHandReport}>
+    <div className="hand-page">
+      <h1 className="title">Add Hand Report</h1>
+      <form className="report-form" onSubmit={addHandReport}>
         <select
           name="category"
           id="category"
@@ -56,6 +60,7 @@ function HandReport() {
         <textarea
           name="message"
           id="message"
+          placeholder="your report"
           onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
             setMessage(e.target.value)
           }
@@ -70,6 +75,8 @@ function HandReport() {
         />
         <button type="submit">Add Report</button>
       </form>
+      {sent && <div className="success">Report Sent Successfully ✅</div>}
+      <Back />
     </div>
   );
 }

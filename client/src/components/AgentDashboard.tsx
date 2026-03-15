@@ -1,11 +1,22 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 function AgentDashboard() {
+  const navigate = useNavigate();
+
   return (
-    <div>
-      <Link to="/myreports">My Reports</Link>
-      <Link to="/newhandreport">New Hand Reports</Link>
-      <Link to="/newcsvreport">New Csv Reports</Link>
-    </div>
+    <>
+      <button className="button" onClick={() => navigate("/myreports")}>
+        My Reports
+      </button>
+
+      <button className="button" onClick={() => navigate("/newhandreport")}>
+        New Report
+      </button>
+
+      <button className="button" onClick={() => navigate("/newcsvreport")}>
+        CSV Report
+      </button>
+    </>
   );
 }
 

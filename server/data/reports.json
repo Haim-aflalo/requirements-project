@@ -108,5 +108,23 @@
     "message": "WiFi signal very weak in the office - file 3",
     "sourceType": "csv",
     "createdAt": "2026-03-11T14:13:52.136Z"
+  },
+  {
+    "id": "me27it3",
+    "userId": "AGT002",
+    "category": "logistics",
+    "urgency": "low",
+    "message": "ert",
+    "sourceType": "manual",
+    "createdAt": "2026-03-15T10:00:15.259Z"
+  },
+  {
+    "id": "6b6sewk",
+    "userId": "AGT002",
+    "category": "logistics",
+    "urgency": "low",
+    "message": "hello",
+    "sourceType": "manual",
+    "createdAt": "2026-03-15T10:05:34.848Z"
   }
 ]

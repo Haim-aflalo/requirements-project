@@ -10,7 +10,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ adminOnly }) => {
   const role = useAuthState((state) => state.role);
 
   if (!role) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   }
 
   if (adminOnly && role !== "admin") {

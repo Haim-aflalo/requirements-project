@@ -47,60 +47,59 @@ function MyReports() {
   }, [category, urgency, agentCode]);
 
   return (
-    <>
-      <select value={category} onChange={(e) => setCategory(e.target.value)}>
-        <option value="">Category</option>
-        <option value="intelligence">intelligence</option>
-        <option value="logistics">logistics</option>
-        <option value="alert">alert</option>
-      </select>
+    <div className="reports-page">
+      <div className="filters">
+        <select value={category} onChange={(e) => setCategory(e.target.value)}>
+          <option value="">Category</option>
+          <option value="intelligence">intelligence</option>
+          <option value="logistics">logistics</option>
+          <option value="alert">alert</option>
+        </select>
 
-      <select onChange={(e) => setUrgency(e.target.value)}>
-        <option value="">Urgency</option>
-        <option value="low">low</option>
-        <option value="medium">medium</option>
-        <option value="high">high</option>
-      </select>
-      {role === "admin" && (
-        <input
-          type="text"
-          placeholder="filter by agentCode"
-          onChange={(e) => setAgentCode(e.target.value)}
-        />
-      )}
-      <ul>
+        <select onChange={(e) => setUrgency(e.target.value)}>
+          <option value="">Urgency</option>
+          <option value="low">low</option>
+          <option value="medium">medium</option>
+          <option value="high">high</option>
+        </select>
+
+        {role === "admin" && (
+          <input
+            type="text"
+            placeholder="Agent Code"
+            onChange={(e) => setAgentCode(e.target.value)}
+          />
+        )}
+      </div>
+
+      <div className="reports-table">
+        <div className="table-header">
+          <div>User</div>
+          <div>Category</div>
+          <div>Urgency</div>
+          <div>Message</div>
+          <div>Source</div>
+          <div>Image</div>
+        </div>
+
         {reports.map((report) => (
-          <li key={report.id}>
+          <div className="table-row" key={report.id}>
+            <div>{report.userId}</div>
+            <div>{report.category}</div>
+            <div>{report.urgency}</div>
+            <div>{report.message}</div>
+            <div>{report.sourceType}</div>
             <div>
-              <strong>User Id:</strong>
-              {report.userId}
+              {report.imagePath ? (
+                <img src={report.imagePath} alt="report" />
+              ) : (
+                "-"
+              )}
             </div>
-            <div>
-              <strong>Category:</strong>
-              {report.category}
-            </div>
-            <div>
-              <strong>Urgency:</strong>
-              {report.urgency}
-            </div>
-            <div>
-              <strong>Message:</strong>
-              {report.message}
-            </div>
-            <div>
-              <strong>Source:</strong>
-              {report.sourceType}
-            </div>
-            {report.imagePath && (
-              <div>
-                <strong>Image Path:</strong>
-                {report.imagePath}
-              </div>
-            )}
-          </li>
+          </div>
         ))}
-      </ul>
-    </>
+      </div>
+    </div>
   );
 }
 

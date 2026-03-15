@@ -14,8 +14,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<LoginPage />} />
-
+          <Route path="/" element={<LoginPage />} />
           <Route element={<ProtectedRoute />}>
             <Route path="/agentdashboard" element={<AgentDashboardPage />} />
             <Route path="/myreports" element={<MyReportsPage />} />
